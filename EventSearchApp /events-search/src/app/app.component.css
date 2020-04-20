@@ -1,0 +1,19 @@
+.appHeader{
+    background-color: black;
+    color: white;
+    text-align: center;
+    font-size: xx-large;
+    letter-spacing: 11px;
+    text-transform: uppercase;
+    padding-left: 10px;
+}
+
+.backBtn{
+    width: 5%;
+    float: left;
+}
+
+.appHeading{
+    width: 90%;
+    float: left;
+}

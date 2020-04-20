@@ -1,0 +1,45 @@
+.homeBg{
+  background: linear-gradient( rgba(0,0,0,0.5), rgba(0, 0, 0, 0.5) ),url(../../assets/theNightWatchImg.jpg) no-repeat center center fixed;
+    /*background-image: url(../../assets/theNightWatchImg.jpg);*/
+    background-repeat: no-repeat; 
+    background-size: cover; 
+    background-position: center center;
+    color: white;
+    justify-content: center;
+}
+html,
+body,
+header,
+.view {
+  height: 100%;
+}
+
+@media (max-width: 740px) {
+  html,
+  body,
+  header,
+  .view {
+    height: 100vh;
+  }
+}
+
+h1 {
+  letter-spacing: 8px;
+}
+
+.hr-light {
+  border-top: 3px solid #fff;
+  width: 215px;
+}
+
+.eventBtn{
+  border-radius: 2.5rem;
+  padding: 15px 22px 15px 22px;
+  background-color: #f3eded24;
+}
+
+.eventBtn:hover, .eventBtn:focus, .eventBtn:active, .eventBtn.active {
+  color: #fff;
+  background-color: #040606ad;
+  border-color: white;
+}

@@ -1,0 +1,49 @@
+<div class="listHeader">
+    <div class="row">
+      <div class="col-1 col-sm-2 col-md-2 col-lg-2 col-xl-3"></div>
+      <div class="col-8 col-sm-7 col-md-8 col-lg-8 col-xl-7">
+        <div class="row">
+          <div class="col-8 col-sm-8 col-md-6 col-lg-5 col-xl-4 dateLbl"> {{eventDate | date:'EEEE'}} {{eventDate | date:'longDate'}} </div>
+          <div class="col-4 col-sm-4 col-md-6 col-lg-7 col-xl-6 px-0"> 
+            <button class="arrowBtnLeft" (click)="previous(eventDate)"><mat-icon>keyboard_arrow_left</mat-icon></button>
+            <button class="arrowBtnRight" (click)="next(eventDate)"><mat-icon>keyboard_arrow_right</mat-icon></button>
+          </div>
+        </div>
+      </div>
+      <div class="col-3 col-sm-3 col-md-2 col-lg-2 col-xl-2">
+        <button class="chartViewBtn" routerLink="/chart">Chart View</button>
+      </div>
+  </div>
+ </div>
+<div class="noDataMsg">
+  <span *ngIf="noData == true"> No Events on this Date</span>
+</div>
+  <div class="container listContainer">
+    <div class="row" *ngFor="let event of events; let last = last">
+      <div class="col-1 col-sm-1 col-md-1 col-lg-2 col-xl-2"></div>
+      <div class="col-10 col-sm-10 col-md-10 col-lg-8 col-xl-8 listDiv" [ngClass]="{'last-child': last}">
+        <div class="row">
+          <div class="col-4 px-0 col-sm-4 col-md-4 col-lg-4 col-xl-4 timeDiv">{{ event.period.startDate | date:'hh:mm' }} - {{ event.period.endDate | date:'hh:mm' }}</div>
+          <div class="col-8 col-sm-8 col-md-8 col-lg-8 col-xl-8">
+            <div class="descDiv">{{ event.exposition.name }}</div>
+            <div class="row marginBtm-lbl">
+              <div class="col-6 col-sm-6 col-md-6 col-lg-6 col-xl-6 colorGrey">Places Available:</div>
+              <div class="col-6 col-sm-6 col-md-6 col-lg-6 col-xl-6 colorGrey">{{ event.period.remaining }} of {{ event.period.maximum }}</div>
+            </div>
+            <div class="row marginBtm-lbl">
+              <div class="col-6 col-sm-6 col-md-6 col-lg-6 col-xl-6 colorGrey">Appropriate for:</div>
+              <div class="col-6 col-sm-6 col-md-6 col-lg-6 col-xl-6 colorGrey">{{ event.groupType.friendlyName }}</div>
+            </div>
+            <div class="row marginBtm-lbl">
+              <div class="col-6 col-sm-6 col-md-6 col-lg-6 col-xl-6 colorGrey">Language:</div>
+              <div class="col-6 col-sm-6 col-md-6 col-lg-6 col-xl-6 colorGrey">
+                <span *ngIf="event.lang == 'nl'">Dutch</span>
+                <span *ngIf="event.lang !== 'nl'">{{ event.lang }}</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-1 col-sm-1 col-md-1 col-lg-2 col-xl-2"></div>
+    </div>
+  </div>
