@@ -54,6 +54,6 @@
 }
   
   .focus circle {
-  fill: none;
+  fill: white;
   stroke: steelblue;
 }

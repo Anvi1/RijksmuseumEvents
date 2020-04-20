@@ -26,6 +26,7 @@ export class ChartViewComponent implements OnInit {
   endDate;
   weekArr = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
   monthArr = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+  tickValuesArr =[];
 
     private margin = {top: 20, right: 20, bottom: 30, left: 50};
     private width: number;
@@ -63,7 +64,10 @@ private drawAxis() {
     this.svg.append('g')
         .attr('class', 'x axis')
         .attr('transform', 'translate(0,' + this.height + ')')
-        .call(d3Axis.axisBottom(this.x))
+        .call(d3Axis.axisBottom(this.x).tickValues(this.tickValuesArr))
+        
+        
+        
         
         
 
@@ -77,7 +81,7 @@ private drawLine() {
     this.line = d3.line()
         .x( (d: any) => this.x(d.date) )
         .y( (d: any) => this.y(d.value) )
-        .curve(d3.curveMonotoneX);
+        
     
     this.svg.append('path')
         .datum(this.eventsData)
@@ -93,6 +97,8 @@ private drawLine() {
         .attr("class", "dot") // Assign a class for styling
         .attr("cx", (d: any) => this.x(d.date) )
         .attr("cy", (d: any) => this.y(d.value))
+        .style('fill', '#fff')
+        .style('stroke', 'black')
         .attr("r", 5);   
 }
 
@@ -149,16 +155,36 @@ apiCall(dateVal){
     this.initDate = this.eventDate;
     this.endDate = new Date(date.getFullYear(), date.getMonth() + 1, 28);
     this.apiCall(this.eventDate); 
+    this.tickValuesArr = [1,2,3,4,5,6,7];
     
   }
 
   
-  
+  changeTickValuesNext(){
+    var init = this.tickValuesArr[6] + 1;
+    var limit = init + 7;
+    this.tickValuesArr = [];
+    for (var i = init;i<limit;i++){
+      this.tickValuesArr.push(i);
+    }
+    console.log(this.tickValuesArr);
+  }
+
+  changeTickValuesPrev(){
+    var init = this.tickValuesArr[0] - 7;
+    var limit = init + 7;
+    this.tickValuesArr = [];
+    for (var i = init;i<limit;i++){
+      this.tickValuesArr.push(i);
+    }
+    console.log(this.tickValuesArr);
+  }
 
   nextWeek(selectedDate){ 
     selectedDate = new Date(selectedDate);
     selectedDate = selectedDate.setDate(selectedDate.getDate() + 1);  
     this.eventDate =  new Date(selectedDate);
+    this.changeTickValuesNext();
     d3.selectAll("svg > *").remove();
     this.apiCall(this.eventDate);
   }  
@@ -167,6 +193,7 @@ apiCall(dateVal){
     selectedDate = new Date(selectedDate);
     selectedDate = selectedDate.setDate(selectedDate.getDate() - 7);  
     this.eventDate =  new Date(selectedDate);
+    this.changeTickValuesPrev();
     d3.selectAll("svg > *").remove();
     this.apiCall(this.eventDate);
   } 

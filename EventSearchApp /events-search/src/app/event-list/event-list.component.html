@@ -3,9 +3,9 @@
       <div class="col-1 col-sm-2 col-md-2 col-lg-2 col-xl-3"></div>
       <div class="col-8 col-sm-7 col-md-8 col-lg-8 col-xl-7">
         <div class="row">
-          <div class="col-8 col-sm-8 col-md-6 col-lg-5 col-xl-4 dateLbl"> {{eventDate | date:'EEEE'}} {{eventDate | date:'longDate'}} </div>
+          <div class="col-8 col-sm-8 col-md-6 col-lg-5 col-xl-4 dateLbl"> {{eventDate | date:'EEEE'}} {{eventDate | date:'longDate'}}</div>
           <div class="col-4 col-sm-4 col-md-6 col-lg-7 col-xl-6 px-0"> 
-            <button class="arrowBtnLeft" (click)="previous(eventDate)"><mat-icon>keyboard_arrow_left</mat-icon></button>
+            <button class="arrowBtnLeft" (click)="previous(eventDate)" [disabled]="prevDate <= currentDate"><mat-icon>keyboard_arrow_left</mat-icon></button>
             <button class="arrowBtnRight" (click)="next(eventDate)"><mat-icon>keyboard_arrow_right</mat-icon></button>
           </div>
         </div>

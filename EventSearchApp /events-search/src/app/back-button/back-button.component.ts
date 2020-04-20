@@ -3,7 +3,7 @@ import { BackButtonService } from '../back-button.service';
 import {Location} from '@angular/common';
 
 @Component({
-  selector: 'back-button',
+  selector: 'app-back-button',
   templateUrl: './back-button.component.html',
   styleUrls: ['./back-button.component.css']
 })

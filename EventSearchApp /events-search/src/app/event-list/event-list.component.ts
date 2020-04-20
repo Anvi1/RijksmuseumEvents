@@ -13,6 +13,8 @@ export class EventListComponent implements OnInit {
   eventDate;
   eventDateFrmt;
   noData = false;
+  currentDate = new Date().getDate();
+  prevDate;
   
   constructor(
     private apiService: ApiService,
@@ -59,7 +61,13 @@ previous(selectedDate){
   selectedDate = new Date(selectedDate);
   selectedDate = selectedDate.setDate(selectedDate.getDate() - 1);  
   this.eventDate =  selectedDate;
+  this.prevDate = (new Date(selectedDate)).getDate();
+
+  console.log(this.prevDate);
+  console.log(this.currentDate);
   this.apiCall(selectedDate);
+  
+
 } 
 
 }

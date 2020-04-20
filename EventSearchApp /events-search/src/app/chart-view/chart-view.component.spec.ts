@@ -18,8 +18,6 @@ describe('ChartViewComponent', () => {
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
+  
 
-  it('should create', () => {
-    expect(component).toBeTruthy();
-  });
 });

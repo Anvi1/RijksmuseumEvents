@@ -1,14 +1,21 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-
+import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
+import { HttpClient } from '@angular/common/http';
+import { ApiService } from '../api.service';
 import { EventListComponent } from './event-list.component';
 
 describe('EventListComponent', () => {
   let component: EventListComponent;
   let fixture: ComponentFixture<EventListComponent>;
+  let eventList: EventListComponent;
+  let httpClient: HttpClient;
+  let httpTestingController: HttpTestingController;
+  let myService: ApiService;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ EventListComponent ]
+      imports: [HttpClientTestingModule], 
+      providers: [ApiService, EventListComponent]
     })
     .compileComponents();
   }));
@@ -17,14 +24,25 @@ describe('EventListComponent', () => {
     fixture = TestBed.createComponent(EventListComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
+    httpClient = TestBed.inject(HttpClient);
+    httpTestingController = TestBed.inject(HttpTestingController);
+    myService = TestBed.inject(ApiService);
+    eventList = TestBed.inject(EventListComponent);
   });
 
-  it('should create', () => {
-    expect(component).toBeTruthy();
-  });
-  // it(`should have a function 'formatDate'`, async(() => {
-  //   fixture = TestBed.createComponent(EventListComponent);
-  //   component = fixture.debugElement.componentInstance;
-  //   expect(component.formatDate(new Date("2020-09-11"))).toEqual("2020-09-11");
-  // }));
+  // it('should be created', () => {
+  //   const eventList = fixture.debugElement.componentInstance;
+  //   expect(eventList).toBeTruthy();
+  //  });
+
+
+  // it('it should format date', () => {
+  //   var date = new Date('2020-04-15');
+  //   var formattedDate = eventList.formatDate(date);
+  //   console.log(date);
+  //   console.log(formattedDate);
+  //   //expect(date).toBe(formattedDate);
+  // });
+
+  
 });

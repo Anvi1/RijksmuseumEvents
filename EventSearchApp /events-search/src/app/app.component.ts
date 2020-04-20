@@ -7,7 +7,7 @@ import { BackButtonService } from './back-button.service';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-
+ public title:'Museum';
   constructor(
     public back: BackButtonService
     ) { }
